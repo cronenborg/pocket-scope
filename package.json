@@ -1,0 +1,19 @@
+{
+  "name": "android-oscilloscope",
+  "private": true,
+  "version": "1.0.0",
+  "license": "LGPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:phone": "vite --mode phone",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.0.0",
+    "sharp": "^0.35.5",
+    "vite": "^7.0.0"
+  }
+}

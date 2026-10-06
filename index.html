@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <title>Pocket Scope</title>
+  </head>
+  <body>
+    <div id="stage">
+      <canvas id="scope"></canvas>
+      <canvas id="graticule"></canvas>
+    </div>
+
+    <button id="menu-btn" class="icon-btn floating" aria-label="Open controls">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10" /><circle cx="16" cy="7" r="2" /><circle cx="8" cy="17" r="2" /></svg>
+    </button>
+
+    <div id="start" class="start">
+      <button id="start-btn" class="start-btn">Tap to start</button>
+      <p>Uses the microphone (built-in or USB-C). Nothing is recorded or sent anywhere.</p>
+    </div>
+
+    <div id="rotate-hint" class="rotate-hint">Rotate to landscape</div>
+    <div class="fs-hint">Tap the screen for fullscreen</div>
+
+    <div id="backdrop" class="backdrop"></div>
+    <aside id="panel" class="panel" aria-label="Controls" aria-hidden="true">
+      <header>
+        <h1>Pocket Scope</h1>
+        <button id="fs-btn" class="icon-btn" aria-label="Toggle fullscreen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" /></svg>
+        </button>
+        <button id="close-btn" class="icon-btn" aria-label="Close controls">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+      </header>
+
+      <section>
+        <h2>Input</h2>
+        <div class="row">
+          <select id="device-select" aria-label="Microphone"></select>
+          <button id="power-btn" class="pill">Start</button>
+        </div>
+        <p id="status" class="status">Stopped</p>
+      </section>
+
+      <section>
+        <h2>Mode</h2>
+        <div class="seg" data-key="mode">
+          <button data-value="xy">XY</button>
+          <button data-value="sweep">Sweep</button>
+        </div>
+        <div class="sweep-only">
+          <label class="row">
+            <span>Time / div</span>
+            <select data-key="msPerDiv" data-type="number">
+              <option value="0.1">0.1 ms</option><option value="0.2">0.2 ms</option><option value="0.5">0.5 ms</option>
+              <option value="1">1 ms</option><option value="2">2 ms</option><option value="5">5 ms</option>
+              <option value="10">10 ms</option><option value="20">20 ms</option><option value="50">50 ms</option>
+            </select>
+          </label>
+          <label class="slider"><span>Trigger</span><input type="range" data-key="trigger" min="-1" max="1" step="0.01" /><output></output></label>
+        </div>
+      </section>
+
+      <section>
+        <h2>Beam</h2>
+        <label class="slider"><span>Intensity</span><input type="range" data-key="intensity" min="-2" max="2" step="0.01" /><output></output></label>
+        <label class="slider"><span>Focus</span><input type="range" data-key="focus" min="0.3" max="4" step="0.01" /><output></output></label>
+        <label class="slider"><span>Persistence</span><input type="range" data-key="persistence" min="0" max="1" step="0.01" /><output></output></label>
+        <label class="slider"><span>Glow</span><input type="range" data-key="glow" min="0" max="2" step="0.01" /><output></output></label>
+        <label class="slider"><span>Hue</span><input type="range" data-key="hue" min="0" max="360" step="1" class="hue" /><output></output></label>
+      </section>
+
+      <section>
+        <h2>Signal</h2>
+        <label class="slider"><span>Gain</span><input type="range" data-key="gain" min="-3" max="6" step="0.01" /><output></output></label>
+        <label class="toggle"><span>Swap X / Y</span><input type="checkbox" data-key="swapXY" /></label>
+        <label class="toggle"><span>Invert X</span><input type="checkbox" data-key="invertX" /></label>
+        <label class="toggle"><span>Invert Y</span><input type="checkbox" data-key="invertY" /></label>
+        <label class="toggle"><span>Upsampling</span><input type="checkbox" data-key="upsample" /></label>
+        <label class="toggle"><span>Freeze</span><input type="checkbox" data-key="freeze" /></label>
+      </section>
+
+      <section>
+        <h2>Screen</h2>
+        <div class="seg" data-key="aspect">
+          <button data-value="square">Square</button>
+          <button data-value="fill">Fill</button>
+        </div>
+        <label class="toggle"><span>Graticule</span><input type="checkbox" data-key="graticule" /></label>
+        <button id="install-btn" class="pill install" hidden>Install app (fullscreen)</button>
+        <button id="reset-btn" class="pill subtle">Reset all settings</button>
+      </section>
+
+      <footer>
+        Double-tap a slider label to reset it.<br />
+        Inspired by the XXY Oscilloscope by Neil Thapen (dood.al/oscilloscope) and woscope by m1el.
+      </footer>
+    </aside>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
