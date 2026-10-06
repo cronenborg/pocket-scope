@@ -2,14 +2,14 @@ const KEY = 'pocket-scope.settings.v1';
 
 export const DEFAULTS = {
   deviceId: '',        // '' = system default microphone
-  mode: 'xy',          // 'xy' | 'sweep'
+  mode: 'sweep',       // 'xy' | 'sweep'
   msPerDiv: 1,
-  trigger: 0,
-  gain: 0,             // log2 display gain
-  intensity: 0,        // log10 beam energy
-  focus: 1,            // beam radius, CSS px
-  persistence: 0.2,
-  glow: 0.5,
+  trigger: 0.02,
+  gain: 0.48,          // log2 display gain
+  intensity: 0.57,     // log10 beam energy
+  focus: 0.64,         // beam radius, CSS px
+  persistence: 0.13,
+  glow: 0.54,
   hue: 125,
   swapXY: false,
   invertX: false,
